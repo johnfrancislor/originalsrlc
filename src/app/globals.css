@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand plum from the original site (#894677), extended into a scale. */
+  --color-plum-50: #faf4f8;
+  --color-plum-100: #f3e6ef;
+  --color-plum-200: #e6cbde;
+  --color-plum-300: #d2a5c4;
+  --color-plum-400: #b679a3;
+  --color-plum-500: #9d5a89;
+  --color-plum-600: #894677;
+  --color-plum-700: #723a63;
+  --color-plum-800: #5b2f50;
+  --color-plum-900: #3f2038;
+
+  /* Brand olive from the original banner, plus a warm sun accent. */
+  --color-olive-100: #eef0d8;
+  --color-olive-300: #c9d08e;
+  --color-olive-500: #a3ad5a;
+  --color-olive-700: #6f7836;
+  --color-sun-200: #fde9a8;
+  --color-sun-400: #f7c843;
+  --color-sun-500: #eeb424;
+
+  --color-ink: #2a1a26;
+  --color-cream: #fffaf5;
+
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-fredoka);
+  --font-hand: var(--font-caveat);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-sun-200);
+}
+
+/* Soft blob shape used behind photos, as in the reference layout. */
+.blob {
+  border-radius: 58% 42% 55% 45% / 48% 55% 45% 52%;
+}
+
+.dots {
+  background-image: radial-gradient(currentColor 2px, transparent 2.5px);
+  background-size: 16px 16px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .float-slow {
+    animation: float 9s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
